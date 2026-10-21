@@ -1,0 +1,107 @@
+{
+  "debug": false,
+  "commande": {
+    "nom": "krebbs",
+    "alias": ["tool", "tools", "koriakrebbs"],
+    "description": "Outils Krebbs à niveaux"
+  },
+  "commandes": {
+    "help": {
+      "actif": true,
+      "alias": ["?"],
+      "permission": ""
+    },
+    "menu": {
+      "actif": true,
+      "alias": ["gui", "m"],
+      "permission": "koriakrebbs.player.menu"
+    },
+    "rewards": {
+      "actif": true,
+      "alias": ["levels"],
+      "permission": "koriakrebbs.player.menu"
+    },
+    "give": {
+      "actif": true,
+      "alias": [],
+      "permission": "koriakrebbs.admin.give"
+    },
+    "xp": {
+      "actif": true,
+      "alias": ["addxp"],
+      "permission": "koriakrebbs.admin.xp"
+    },
+    "level": {
+      "actif": true,
+      "alias": ["setlevel"],
+      "permission": "koriakrebbs.admin.level"
+    },
+    "config": {
+      "actif": true,
+      "alias": ["configuration", "cfg"],
+      "permission": "koriakrebbs.admin.config"
+    },
+    "reload": {
+      "actif": true,
+      "alias": ["rl"],
+      "permission": "koriakrebbs.admin.reload"
+    }
+  },
+  "niveaux": {
+    "xp-requise": [
+      100,
+      150,
+      225,
+      300,
+      400,
+      500,
+      650,
+      800,
+      1000,
+      1200,
+      1450,
+      1700,
+      2000,
+      2350,
+      2700,
+      3100,
+      3500,
+      4000,
+      4500,
+      5000
+    ]
+  },
+  "menu": {
+    "shift-clic-droit": true,
+    "layout": "krebbs",
+    "installer-layout": true
+  },
+  "affichage": {
+    "barre-action": true,
+    "lore": true,
+    "barre": {
+      "longueur": 20,
+      "caractere": "|",
+      "couleur-pleine": "&b",
+      "couleur-vide": "&8"
+    },
+    "annonce-niveau-max": true
+  },
+  "anti-abus": {
+    "ignorer-blocs-poses": true,
+    "multiplicateur-mobs-spawner": 0.25,
+    "delai-meme-victime-secondes": 600,
+    "xp-en-creatif": false
+  },
+  "titres": {
+    "apparition": 5,
+    "duree": 40,
+    "disparition": 10
+  },
+  "sons": {
+    "gain-xp": "",
+    "niveau": "LEVEL_UP:0.8:1.2",
+    "niveau-max": "ENDERDRAGON_GROWL:0.5:1.4",
+    "clic-menu": "CLICK:0.5:1"
+  }
+}

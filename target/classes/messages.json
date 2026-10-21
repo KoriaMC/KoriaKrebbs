@@ -1,0 +1,157 @@
+{
+  "prefix": "&8[&bKrebbs&8] &r",
+  "general": {
+    "no-permission": "{prefix}&cVous n'avez pas la permission.",
+    "players-only": "{prefix}&cCette commande est réservée aux joueurs.",
+    "unknown-command": "{prefix}&cCommande inconnue. Faites &f/{label} help&c.",
+    "usage": "{prefix}&cUsage : &f/{label} {command} {usage}",
+    "error": "{prefix}&cUne erreur est survenue, prévenez un administrateur.",
+    "unknown-player": "{prefix}&cJoueur introuvable : &f{player}",
+    "invalid-number": "{prefix}&c« {input} » n'est pas un nombre valide.",
+    "reload-done": "{prefix}&aConfiguration rechargée ({outils} outil(s) à niveaux).",
+    "reload-problems": "{prefix}&c{count} problème(s) détecté(s) :",
+    "reload-problem": "&8- &c{problem}"
+  },
+  "help": {
+    "header": "&3&m-------&r &bKoriaKrebbs &3&m-------",
+    "line": "&b/{label} {command} &7{usage} &8- &f{description}",
+    "footer": "&3&m-----------------------------",
+    "commands": {
+      "help": {
+        "usage": "",
+        "description": "Affiche cette aide."
+      },
+      "menu": {
+        "usage": "",
+        "description": "Menu de l'outil tenu en main (ou shift + clic droit)."
+      },
+      "rewards": {
+        "usage": "",
+        "description": "Récompenses des niveaux de l'outil tenu en main."
+      },
+      "give": {
+        "usage": "<player> <tool> [level]",
+        "description": "Donne un outil Krebbs."
+      },
+      "xp": {
+        "usage": "<player> <amount>",
+        "description": "Ajoute de l'XP à l'outil tenu (récompenses comprises)."
+      },
+      "level": {
+        "usage": "<player> <level>",
+        "description": "Fixe le niveau de l'outil tenu (enchantements seulement)."
+      },
+      "config": {
+        "usage": "[file]",
+        "description": "Éditeur de configuration en jeu."
+      },
+      "reload": {
+        "usage": "",
+        "description": "Recharge la configuration."
+      }
+    }
+  },
+  "krebbs": {
+    "not-holding": "{prefix}&cTiens un outil Krebbs en main.",
+    "xp-gain": "[actionbar]&b+{gain} XP &8» {outil} &7niv. &f{niveau} &8[{barre}&8] &7{xp}/{requis}",
+    "level-up": [
+      "[title]&b&lNIVEAU {niveau} !;;{outil} &7niveau &f{niveau}&7/&f{max}",
+      "{prefix}{outil} &7passe au niveau &b&l{niveau}&7/&f{max} &7!"
+    ],
+    "level-up-reward": "&8 » &f{recompense}",
+    "max-announce": "{prefix}&6&l{joueur} &ea amené son {outil} &eau niveau maximum (&6{max}&e) !",
+    "reward-announce": "{prefix}&b{joueur} &7a débloqué le niveau &b{niveau} &7de son {outil}&7."
+  },
+  "lore": [
+    "",
+    "&7Niveau &b{niveau}&7/&b{max}",
+    "&8[{barre}&8] &7{pourcentage}%",
+    "&7XP : &f{xp}&7/&f{requis}",
+    "&8Shift + clic droit : menu"
+  ],
+  "lore-max": ["", "&6&lNiveau maximum &7({max}/{max})", "&8Shift + clic droit : menu"],
+  "menu": {
+    "chat": [
+      "&3&m-------&r {outil} &3&m-------",
+      "&7Niveau &b{niveau}&7/&b{max} &8[{barre}&8] &7{pourcentage}%",
+      "&7XP : &f{xp}&7/&f{requis} &8(encore {restant})",
+      "&eComment gagner de l'XP :"
+    ],
+    "chat-max": ["&3&m-------&r {outil} &3&m-------", "&6&lNiveau maximum &7({max}/{max})", "&eComment gagner de l'XP :"],
+    "chat-howto": "&8 » {ligne}",
+    "chat-reward": "{couleur}Niveau {niveau} &8» &f{recompense}"
+  },
+  "admin": {
+    "target-not-holding": "{prefix}&c{player} ne tient pas d'outil Krebbs.",
+    "unknown-tool": "{prefix}&cOutil inconnu : &f{outil}&c. Outils : &f{outils}",
+    "invalid-level": "{prefix}&cNiveau invalide : &f{input} &c(0 à {max}).",
+    "given": "{prefix}&a{outil} &adonné à &f{player} &a(niveau {niveau}).",
+    "xp-added": "{prefix}&a+{xp} XP sur {outil} &ade &f{player} &a: niveau {niveau} ({niveaux} niveau(x) gagné(s)).",
+    "level-set": "{prefix}&a{outil} &ade &f{player} &aest maintenant niveau {niveau}."
+  },
+  "values": {
+    "yes-text": "&aOui",
+    "no-text": "&cNon",
+    "no-reward": "&7Aucune récompense",
+    "reward-enchant": "{enchantement} {niveau}",
+    "reward-money": "+{montant} $",
+    "reward-title": "&b&lNiveau {niveau}",
+    "reward-line": "&7» &f{recompense}",
+    "status-obtenu": "&aObtenue",
+    "status-prochain": "&eProchaine",
+    "status-verrouille": "&8Verrouillée",
+    "color-obtenu": "&a",
+    "color-prochain": "&e",
+    "color-verrouille": "&7"
+  },
+  "enchantements": {
+    "DIG_SPEED": "Efficacité",
+    "DURABILITY": "Solidité",
+    "LOOT_BONUS_BLOCKS": "Fortune",
+    "SILK_TOUCH": "Toucher de soie",
+    "DAMAGE_ALL": "Tranchant",
+    "DAMAGE_UNDEAD": "Châtiment",
+    "DAMAGE_ARTHROPODS": "Fléau des arthropodes",
+    "LOOT_BONUS_MOBS": "Butin",
+    "FIRE_ASPECT": "Aura de feu",
+    "KNOCKBACK": "Recul",
+    "LURE": "Appât",
+    "LUCK": "Chance de la mer",
+    "ARROW_DAMAGE": "Puissance",
+    "ARROW_FIRE": "Flamme",
+    "ARROW_INFINITE": "Infinité",
+    "ARROW_KNOCKBACK": "Frappe",
+    "PROTECTION_ENVIRONMENTAL": "Protection",
+    "THORNS": "Épines"
+  },
+  "time": {
+    "days": "j",
+    "hours": "h",
+    "minutes": "min",
+    "seconds": "s",
+    "now": "maintenant",
+    "never": "jamais"
+  },
+  "config-editor": {
+    "cancel-word": "annuler",
+    "empty-word": "vide",
+    "prompt": "{prefix}&eÉcrivez la nouvelle valeur de &f{path} &edans le chat (&f{empty} &epour une valeur vide, &f{cancel} &epour annuler).",
+    "prompt-current": "&7Valeur actuelle : &f",
+    "prompt-list-add": "{prefix}&eÉcrivez la valeur à ajouter à &f{path} &e(&f{cancel} &epour annuler).",
+    "prompt-list-replace": "{prefix}&eÉcrivez toutes les valeurs de &f{path}&e, séparées par des virgules (&f{cancel} &epour annuler).",
+    "prompt-add": "{prefix}&eÉcrivez le nom de la nouvelle entrée de &f{path} &e(&f{cancel} &epour annuler).",
+    "cancelled": "{prefix}&7Modification annulée.",
+    "saved": "{prefix}&a{file} : &f{path} &a= &f{value}",
+    "reset": "{prefix}&a{file} : &f{path} &areprend sa valeur par défaut.",
+    "removed": "{prefix}&a{file} : &f{path} &asupprimé.",
+    "added": "{prefix}&a{file} : &f{path} &aajouté.",
+    "confirm-remove": "{prefix}&eRefaites Ctrl + Q dans les 5 secondes pour confirmer (&f{path}&e).",
+    "invalid-number": "{prefix}&c« {input} » n'est pas un nombre.",
+    "invalid-key": "{prefix}&cNom invalide : lettres, chiffres, - _ et : uniquement.",
+    "exists": "{prefix}&cL'entrée &f{key} &cexiste déjà.",
+    "empty-section": "{prefix}&cSection vide : ajoutez la première entrée dans le fichier.",
+    "save-error": "{prefix}&cImpossible d'enregistrer {file} : {error}",
+    "restart": "{prefix}&eCe réglage sera appliqué au prochain redémarrage du serveur.",
+    "unknown-file": "{prefix}&cFichier inconnu : &f{file}&c. Fichiers : config, outils, messages, menus."
+  }
+}

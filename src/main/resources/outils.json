@@ -1,0 +1,481 @@
+{
+  "pickaxe": {
+    "actif": true,
+    "materiau": "KREBBS_PICKAXE",
+    "icone": "koriamc:krebbs_pickaxe",
+    "nom": "&bPioche en Krebbs",
+    "type-xp": "BLOCS",
+    "xp": {
+      "STONE": 1,
+      "COBBLESTONE": 1,
+      "MOSSY_COBBLESTONE": 1,
+      "SANDSTONE": 1,
+      "RED_SANDSTONE": 1,
+      "NETHERRACK": 1,
+      "ENDER_STONE": 1,
+      "OBSIDIAN": 3,
+      "COAL_ORE": 3,
+      "IRON_ORE": 4,
+      "GOLD_ORE": 5,
+      "REDSTONE_ORE": 3,
+      "GLOWING_REDSTONE_ORE": 3,
+      "LAPIS_ORE": 5,
+      "QUARTZ_ORE": 3,
+      "DIAMOND_ORE": 12,
+      "EMERALD_ORE": 15,
+      "JADE_ORE": 8,
+      "AMETHYSTE_ORE": 10,
+      "APATITE_ORE": 12,
+      "KORIUM_ORE": 20,
+      "RANDOM_ORE": 12,
+      "*": 0
+    },
+    "comment": [
+      "&7Mine de la &fpierre &7et des &fminerais&7.",
+      "&7Plus le minerai est rare, plus il rapporte :",
+      "&8» &fcharbon &73 XP, &ffer &74 XP, &fdiamant &712 XP",
+      "&8» &fjade &78 XP, &fapatite &712 XP, &fkorium &720 XP",
+      "&7Les blocs posés par un joueur ne comptent pas."
+    ],
+    "recompenses": {
+      "1": {
+        "enchantements": {
+          "DIG_SPEED": 1
+        }
+      },
+      "2": {
+        "enchantements": {
+          "DURABILITY": 1
+        }
+      },
+      "3": {
+        "enchantements": {
+          "DIG_SPEED": 2
+        }
+      },
+      "4": {
+        "argent": 250
+      },
+      "5": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 1
+        }
+      },
+      "6": {
+        "enchantements": {
+          "DIG_SPEED": 3
+        }
+      },
+      "7": {
+        "enchantements": {
+          "DURABILITY": 2
+        }
+      },
+      "8": {
+        "argent": 500
+      },
+      "9": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 2
+        }
+      },
+      "10": {
+        "enchantements": {
+          "DIG_SPEED": 4
+        },
+        "argent": 1000
+      },
+      "11": {
+        "enchantements": {
+          "DURABILITY": 3
+        }
+      },
+      "12": {
+        "argent": 1500
+      },
+      "13": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 3
+        }
+      },
+      "14": {
+        "enchantements": {
+          "DIG_SPEED": 5
+        }
+      },
+      "15": {
+        "argent": 2500
+      },
+      "16": {
+        "enchantements": {
+          "DURABILITY": 4
+        }
+      },
+      "17": {
+        "enchantements": {
+          "DIG_SPEED": 6
+        }
+      },
+      "18": {
+        "argent": 4000
+      },
+      "19": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 4
+        }
+      },
+      "20": {
+        "enchantements": {
+          "DIG_SPEED": 7
+        },
+        "argent": 10000,
+        "annonce": true
+      }
+    }
+  },
+  "sword": {
+    "actif": true,
+    "materiau": "KREBBS_SWORD",
+    "icone": "koriamc:krebbs_sword",
+    "nom": "&bÉpée en Krebbs",
+    "type-xp": "MOBS",
+    "xp": {
+      "PLAYER": 25,
+      "ZOMBIE": 3,
+      "SKELETON": 3,
+      "SPIDER": 3,
+      "CAVE_SPIDER": 3,
+      "CREEPER": 4,
+      "ENDERMAN": 6,
+      "BLAZE": 6,
+      "WITCH": 6,
+      "PIG_ZOMBIE": 4,
+      "GHAST": 8,
+      "MAGMA_CUBE": 2,
+      "SLIME": 2,
+      "GUARDIAN": 6,
+      "SILVERFISH": 1,
+      "ENDERMITE": 1,
+      "WITHER": 150,
+      "ENDER_DRAGON": 300,
+      "*": 1
+    },
+    "comment": [
+      "&7Tue des &fmonstres &7et des &fjoueurs&7.",
+      "&8» &fzombie &73 XP, &fenderman &76 XP, &fjoueur &725 XP",
+      "&8» &fwither &7150 XP, &fdragon &7300 XP",
+      "&7Un même joueur ne rapporte qu'une fois toutes les 10 min.",
+      "&7Les monstres de spawner rapportent 4 fois moins."
+    ],
+    "recompenses": {
+      "1": {
+        "enchantements": {
+          "DAMAGE_ALL": 1
+        }
+      },
+      "2": {
+        "enchantements": {
+          "DURABILITY": 1
+        }
+      },
+      "3": {
+        "enchantements": {
+          "DAMAGE_ALL": 2
+        }
+      },
+      "4": {
+        "argent": 250
+      },
+      "5": {
+        "enchantements": {
+          "LOOT_BONUS_MOBS": 1
+        }
+      },
+      "6": {
+        "enchantements": {
+          "DAMAGE_ALL": 3
+        }
+      },
+      "7": {
+        "enchantements": {
+          "DURABILITY": 2
+        }
+      },
+      "8": {
+        "argent": 500
+      },
+      "9": {
+        "enchantements": {
+          "FIRE_ASPECT": 1
+        }
+      },
+      "10": {
+        "enchantements": {
+          "DAMAGE_ALL": 4
+        },
+        "argent": 1000
+      },
+      "11": {
+        "enchantements": {
+          "LOOT_BONUS_MOBS": 2
+        }
+      },
+      "12": {
+        "argent": 1500
+      },
+      "13": {
+        "enchantements": {
+          "DURABILITY": 3
+        }
+      },
+      "14": {
+        "enchantements": {
+          "DAMAGE_ALL": 5
+        }
+      },
+      "15": {
+        "argent": 2500
+      },
+      "16": {
+        "enchantements": {
+          "FIRE_ASPECT": 2
+        }
+      },
+      "17": {
+        "enchantements": {
+          "LOOT_BONUS_MOBS": 3
+        }
+      },
+      "18": {
+        "argent": 4000
+      },
+      "19": {
+        "enchantements": {
+          "DURABILITY": 4
+        }
+      },
+      "20": {
+        "enchantements": {
+          "LOOT_BONUS_MOBS": 4
+        },
+        "argent": 10000,
+        "annonce": true
+      }
+    }
+  },
+  "hoe": {
+    "actif": true,
+    "materiau": "KREBBS_HOE",
+    "icone": "koriamc:krebbs_hoe",
+    "nom": "&bHoue en Krebbs",
+    "type-xp": "CULTURES",
+    "xp": {
+      "CROPS": 2,
+      "CARROT": 2,
+      "POTATO": 2,
+      "NETHER_WARTS": 3,
+      "COCOA": 2,
+      "MELON_BLOCK": 1,
+      "PUMPKIN": 1
+    },
+    "comment": [
+      "&7Récolte des &fcultures mûres &7avec la houe.",
+      "&8» &fblé, carottes, patates, cacao &72 XP",
+      "&8» &fverrues du Nether &73 XP",
+      "&8» &fmelons, citrouilles &71 XP",
+      "&7Les cultures pas encore mûres ne comptent pas."
+    ],
+    "recompenses": {
+      "1": {
+        "enchantements": {
+          "DURABILITY": 1
+        }
+      },
+      "2": {
+        "argent": 100
+      },
+      "3": {
+        "enchantements": {
+          "DIG_SPEED": 1
+        }
+      },
+      "4": {
+        "argent": 200
+      },
+      "5": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 1
+        }
+      },
+      "6": {
+        "enchantements": {
+          "DURABILITY": 2
+        }
+      },
+      "7": {
+        "argent": 400
+      },
+      "8": {
+        "enchantements": {
+          "DIG_SPEED": 2
+        }
+      },
+      "9": {
+        "argent": 600
+      },
+      "10": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 2
+        },
+        "argent": 1000
+      },
+      "11": {
+        "enchantements": {
+          "DURABILITY": 3
+        }
+      },
+      "12": {
+        "argent": 1200
+      },
+      "13": {
+        "enchantements": {
+          "DIG_SPEED": 3
+        }
+      },
+      "14": {
+        "argent": 1600
+      },
+      "15": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 3
+        },
+        "argent": 2000
+      },
+      "16": {
+        "argent": 2500
+      },
+      "17": {
+        "enchantements": {
+          "DURABILITY": 4
+        }
+      },
+      "18": {
+        "argent": 3500
+      },
+      "19": {
+        "enchantements": {
+          "DIG_SPEED": 4
+        }
+      },
+      "20": {
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 4
+        },
+        "argent": 10000,
+        "annonce": true
+      }
+    }
+  },
+  "rod": {
+    "actif": true,
+    "materiau": "CANNE_KREBBS",
+    "icone": "koriamc:canne_krebbs",
+    "nom": "&bCanne à pêche en Krebbs",
+    "type-xp": "PECHE",
+    "xp": {
+      "RAW_FISH": 5,
+      "*": 3
+    },
+    "comment": ["&7Pêche avec la canne.", "&8» &fpoisson &75 XP", "&8» &ftrésor ou autre prise &73 XP"],
+    "recompenses": {
+      "1": {
+        "enchantements": {
+          "LURE": 1
+        }
+      },
+      "2": {
+        "enchantements": {
+          "DURABILITY": 1
+        }
+      },
+      "3": {
+        "enchantements": {
+          "LUCK": 1
+        }
+      },
+      "4": {
+        "argent": 250
+      },
+      "5": {
+        "enchantements": {
+          "LURE": 2
+        }
+      },
+      "6": {
+        "enchantements": {
+          "DURABILITY": 2
+        }
+      },
+      "7": {
+        "enchantements": {
+          "LUCK": 2
+        }
+      },
+      "8": {
+        "argent": 500
+      },
+      "9": {
+        "enchantements": {
+          "LURE": 3
+        }
+      },
+      "10": {
+        "enchantements": {
+          "LUCK": 3
+        },
+        "argent": 1000
+      },
+      "11": {
+        "enchantements": {
+          "DURABILITY": 3
+        }
+      },
+      "12": {
+        "argent": 1500
+      },
+      "13": {
+        "enchantements": {
+          "LURE": 4
+        }
+      },
+      "14": {
+        "argent": 2000
+      },
+      "15": {
+        "enchantements": {
+          "LUCK": 4
+        }
+      },
+      "16": {
+        "enchantements": {
+          "DURABILITY": 4
+        }
+      },
+      "17": {
+        "argent": 3000
+      },
+      "18": {
+        "argent": 4000
+      },
+      "19": {
+        "enchantements": {
+          "DURABILITY": 5
+        }
+      },
+      "20": {
+        "argent": 10000,
+        "annonce": true
+      }
+    }
+  }
+}

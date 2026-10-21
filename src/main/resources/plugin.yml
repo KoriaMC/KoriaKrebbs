@@ -1,0 +1,23 @@
+name: KoriaKrebbs
+version: ${project.version}
+main: fr.koriamc.krebbs.KoriaKrebbs
+author: KoriaMC
+description: ${project.description}
+softdepend: [Vault]
+
+# La commande principale (/krebbs par défaut) et ses alias sont enregistrés dynamiquement
+# depuis config.json : ils ne sont donc pas déclarés ici.
+
+permissions:
+  koriakrebbs.*:
+    description: Accès complet à KoriaKrebbs
+    default: op
+    children:
+      koriakrebbs.player: true
+      koriakrebbs.admin: true
+  koriakrebbs.player:
+    description: Commandes joueur (les nœuds exacts sont définis dans config.json)
+    default: true
+  koriakrebbs.admin:
+    description: Commandes d'administration (les nœuds exacts sont définis dans config.json)
+    default: op
