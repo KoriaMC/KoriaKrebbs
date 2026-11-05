@@ -20,9 +20,17 @@ public final class LevelReward {
     private final List<String> messages;
     private final List<String> description;
     private final boolean announce;
+    /** Pouvoirs débloqués par ce niveau (TELEKINESIE, COUPS_MOBS...) et leur valeur. */
+    private final Map<String, Double> powers;
 
     public LevelReward(int level, Map<Enchantment, Integer> enchants, double money, List<String> commands,
                        List<String> messages, List<String> description, boolean announce) {
+        this(level, enchants, money, commands, messages, description, announce, new LinkedHashMap<String, Double>());
+    }
+
+    public LevelReward(int level, Map<Enchantment, Integer> enchants, double money, List<String> commands,
+                       List<String> messages, List<String> description, boolean announce, Map<String, Double> powers) {
+        this.powers = Collections.unmodifiableMap(new LinkedHashMap<String, Double>(powers));
         this.level = level;
         this.enchants = Collections.unmodifiableMap(new LinkedHashMap<Enchantment, Integer>(enchants));
         this.money = money;
@@ -63,5 +71,10 @@ public final class LevelReward {
     /** Annonce à tout le serveur (messages.json : krebbs.reward-announce). */
     public boolean isAnnounce() {
         return announce;
+    }
+
+    /** Pouvoir -> valeur (1 pour un simple déblocage). */
+    public Map<String, Double> getPowers() {
+        return powers;
     }
 }

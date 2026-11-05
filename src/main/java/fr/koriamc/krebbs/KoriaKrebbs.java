@@ -47,6 +47,7 @@ public final class KoriaKrebbs extends JavaPlugin {
     private final ToolCatalog tools = new ToolCatalog();
     private final Messages messages = new Messages();
     private final ConfigDocs configDocs = new ConfigDocs();
+    private final fr.koriamc.krebbs.tool.FishTable fish = new fr.koriamc.krebbs.tool.FishTable();
 
     // Services
     private ToolManager toolManager;
@@ -65,9 +66,10 @@ public final class KoriaKrebbs extends JavaPlugin {
         long start = System.currentTimeMillis();
         instance = this;
 
-        configFile = new JsonFile(this, "config.json");
+        configFile = new JsonFile(this, "config.json", "pouvoirs.cultures-modees", "poissons", "poissons.*");
         toolsFile = new JsonFile(this, "outils.json", "*", "*.xp", "*.recompenses", "*.recompenses.*",
-                "*.recompenses.*.enchantements");
+                "*.recompenses.*.enchantements", "*.niveaux", "*.niveaux.*", "*.niveaux.*.objectif",
+                "*.niveaux.*.enchantements", "*.niveaux.*.pouvoirs");
         messagesFile = new JsonFile(this, "messages.json");
         menusFile = new JsonFile(this, "menus.json", "editeur.fichiers");
 
@@ -95,6 +97,7 @@ public final class KoriaKrebbs extends JavaPlugin {
 
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new ToolListener(this), this);
+        pm.registerEvents(new fr.koriamc.krebbs.listener.PowerListener(this), this);
         pm.registerEvents(menus, this);
         pm.registerEvents(menus.prompt(), this);
         commands.registerBukkitCommand();
@@ -136,6 +139,7 @@ public final class KoriaKrebbs extends JavaPlugin {
         toolsConfig.setDefaults(new MemoryConfiguration());
         tools.load(toolsConfig, settings.required);
         problems.addAll(tools.getProblems());
+        fish.load(config.getConfigurationSection("poissons"), problems);
         return problems;
     }
 
@@ -194,6 +198,11 @@ public final class KoriaKrebbs extends JavaPlugin {
     /** Fichiers de configuration, dans l'ordre de l'éditeur. */
     public List<JsonFile> configFiles() {
         return Arrays.asList(configFile, toolsFile, messagesFile, menusFile);
+    }
+
+    /** Poissons custom de la canne du Toucan. */
+    public fr.koriamc.krebbs.tool.FishTable fish() {
+        return fish;
     }
 
     public ToolManager toolManager() {

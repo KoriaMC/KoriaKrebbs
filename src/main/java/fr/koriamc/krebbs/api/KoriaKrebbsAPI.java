@@ -53,6 +53,28 @@ public final class KoriaKrebbsAPI {
         return plugin().toolManager().addXp(player, player.getInventory().getHeldItemSlot(), amount, true);
     }
 
+    /**
+     * Signale une vente au shop : fait progresser les outils du Toucan de l'inventaire dont
+     * l'objectif du prochain niveau est « VENDRE » cet objet.
+     *
+     * @param sold   objet vendu (type et data)
+     * @param amount quantité vendue
+     */
+    public static void progressSale(Player player, ItemStack sold, int amount) {
+        java.util.List<String> keys = new java.util.ArrayList<String>();
+        keys.add(sold.getType().name());
+        keys.add(sold.getType().name() + ":" + sold.getDurability());
+        plugin().toolManager().progress(player, fr.koriamc.krebbs.model.LevelObjective.SELL, keys, amount, false);
+    }
+
+    /**
+     * Valeur d'un pouvoir de l'objet (0 s'il n'est pas débloqué) : TELEKINESIE, POISSONS...
+     * Voir fr.koriamc.krebbs.tool.Powers.
+     */
+    public static double getPower(ItemStack item, String power) {
+        return fr.koriamc.krebbs.tool.Powers.value(plugin().toolManager().powers(item), power);
+    }
+
     /** Ouvre le menu de l'outil tenu en main. */
     public static void openMenu(Player player) {
         plugin().menus().open(player, "principal");

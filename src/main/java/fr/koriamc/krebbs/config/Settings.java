@@ -40,6 +40,18 @@ public final class Settings {
     public int sameVictimSeconds;
     public boolean creative;
 
+    // Pouvoirs du Toucan (config.json : pouvoirs)
+    /** Minerais modés (pouvoir DUPLICATION_MODE). */
+    public java.util.Set<String> moddedOres = new java.util.HashSet<String>();
+    /** Cultures modées : matériau du bloc -> data de la culture mûre. */
+    public Map<String, Integer> moddedCrops = new java.util.HashMap<String, Integer>();
+    /** Objet donné par le pouvoir PETALES. */
+    public String petalItem;
+    /** Durée de l'effet du pouvoir COMBO, en ticks. */
+    public int comboTicks;
+    /** Télékinésie : ce qui ne rentre pas dans l'inventaire tombe au sol (sinon il est perdu). */
+    public boolean telekinesisFullDrop;
+
     // Titres
     public int titleFadeIn;
     public int titleStay;
@@ -78,6 +90,20 @@ public final class Settings {
         spawnerMultiplier = Math.max(0, c.getDouble("anti-abus.multiplicateur-mobs-spawner", 0.25));
         sameVictimSeconds = Math.max(0, c.getInt("anti-abus.delai-meme-victime-secondes", 600));
         creative = c.getBoolean("anti-abus.xp-en-creatif", false);
+        moddedOres.clear();
+        for (String ore : c.getStringList("pouvoirs.minerais-modes")) {
+            moddedOres.add(ore.trim().toUpperCase(java.util.Locale.ROOT));
+        }
+        moddedCrops.clear();
+        ConfigurationSection crops = c.getConfigurationSection("pouvoirs.cultures-modees");
+        if (crops != null) {
+            for (String crop : crops.getKeys(false)) {
+                moddedCrops.put(crop.trim().toUpperCase(java.util.Locale.ROOT), crops.getInt(crop, 7));
+            }
+        }
+        petalItem = c.getString("pouvoirs.objet-petale", "PETALE_TROPICAL");
+        comboTicks = Math.max(20, c.getInt("pouvoirs.combo-duree-ticks", 60));
+        telekinesisFullDrop = c.getBoolean("pouvoirs.telekinesie-inventaire-plein-au-sol", true);
         titleFadeIn = c.getInt("titres.apparition", 5);
         titleStay = c.getInt("titres.duree", 40);
         titleFadeOut = c.getInt("titres.disparition", 10);

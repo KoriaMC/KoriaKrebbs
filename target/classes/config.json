@@ -3,7 +3,7 @@
   "commande": {
     "nom": "krebbs",
     "alias": ["tool", "tools", "koriakrebbs"],
-    "description": "Outils Krebbs à niveaux"
+    "description": "Outils du Toucan à niveaux"
   },
   "commandes": {
     "help": {
@@ -103,5 +103,18 @@
     "niveau": "LEVEL_UP:0.8:1.2",
     "niveau-max": "ENDERDRAGON_GROWL:0.5:1.4",
     "clic-menu": "CLICK:0.5:1"
+  },
+  "pouvoirs": {
+    "minerais-modes": ["JADE_ORE", "AMETHYSTE_ORE", "APATITE_ORE", "KORIUM_ORE", "LITHIUM_ORE", "RANDOM_ORE"],
+    "cultures-modees": { "RADIS_CROP": 7, "AVOCAT_CROP": 7, "PETIT_ROND_CROP": 7, "MELON_CROP": 7 },
+    "objet-petale": "PETALE_TROPICAL",
+    "combo-duree-ticks": 60,
+    "telekinesie-inventaire-plein-au-sol": true
+  },
+  "poissons": {
+    "COMMUN": { "chance": 30, "poissons": ["TRUITE", "ANGUILLE"] },
+    "RARE": { "chance": 12, "poissons": ["ESPADON", "PIRANHA"] },
+    "EPIQUE": { "chance": 4, "poissons": ["RAIE", "REQUIN_BLANC"] },
+    "LEGENDAIRE": { "chance": 1, "poissons": ["CARPE_DOREE", "CRABE"] }
   }
 }

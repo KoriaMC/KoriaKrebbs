@@ -3,132 +3,179 @@
     "actif": true,
     "materiau": "KREBBS_PICKAXE",
     "icone": "koriamc:krebbs_pickaxe",
-    "nom": "&bPioche en Krebbs",
-    "type-xp": "BLOCS",
-    "xp": {
-      "STONE": 1,
-      "COBBLESTONE": 1,
-      "MOSSY_COBBLESTONE": 1,
-      "SANDSTONE": 1,
-      "RED_SANDSTONE": 1,
-      "NETHERRACK": 1,
-      "ENDER_STONE": 1,
-      "OBSIDIAN": 3,
-      "COAL_ORE": 3,
-      "IRON_ORE": 4,
-      "GOLD_ORE": 5,
-      "REDSTONE_ORE": 3,
-      "GLOWING_REDSTONE_ORE": 3,
-      "LAPIS_ORE": 5,
-      "QUARTZ_ORE": 3,
-      "DIAMOND_ORE": 12,
-      "EMERALD_ORE": 15,
-      "JADE_ORE": 8,
-      "AMETHYSTE_ORE": 10,
-      "APATITE_ORE": 12,
-      "KORIUM_ORE": 20,
-      "RANDOM_ORE": 12,
-      "*": 0
-    },
-    "comment": [
-      "&7Mine de la &fpierre &7et des &fminerais&7.",
-      "&7Plus le minerai est rare, plus il rapporte :",
-      "&8» &fcharbon &73 XP, &ffer &74 XP, &fdiamant &712 XP",
-      "&8» &fjade &78 XP, &fapatite &712 XP, &fkorium &720 XP",
-      "&7Les blocs posés par un joueur ne comptent pas."
-    ],
-    "recompenses": {
+    "nom": "&bPioche du Toucan",
+    "comment": ["&7Chaque niveau a son objectif : miner,", "&7fondre ou vendre au shop.", "&7Les blocs posés par un joueur ne comptent pas."],
+    "niveaux": {
       "1": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": [],
+          "quantite": 1000,
+          "texte": "Miner 1 000 blocs"
+        },
         "enchantements": {
           "DIG_SPEED": 1
         }
       },
       "2": {
-        "enchantements": {
-          "DURABILITY": 1
-        }
-      },
-      "3": {
-        "enchantements": {
-          "DIG_SPEED": 2
-        }
-      },
-      "4": {
-        "argent": 250
-      },
-      "5": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": ["DIAMOND_ORE"],
+          "quantite": 96,
+          "texte": "Miner 96 diamants"
+        },
         "enchantements": {
           "LOOT_BONUS_BLOCKS": 1
         }
       },
-      "6": {
+      "3": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["COAL"],
+          "quantite": 576,
+          "texte": "Vendre 576 charbons"
+        },
+        "enchantements": {
+          "DURABILITY": 1
+        }
+      },
+      "4": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": [],
+          "quantite": 5000,
+          "texte": "Miner 5 000 blocs"
+        },
         "enchantements": {
           "DIG_SPEED": 3
         }
       },
+      "5": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": ["EMERALD_ORE"],
+          "quantite": 16,
+          "texte": "Miner 16 émeraudes"
+        },
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 2
+        }
+      },
+      "6": {
+        "objectif": {
+          "type": "FONDRE",
+          "cibles": ["IRON_INGOT"],
+          "quantite": 1152,
+          "texte": "Fondre 1 152 fers"
+        },
+        "pouvoirs": {
+          "XP_MINAGE": 1
+        },
+        "description": ["&fMiner rapporte de l'XP"]
+      },
       "7": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": [],
+          "quantite": 10000,
+          "texte": "Miner 10 000 blocs"
+        },
         "enchantements": {
           "DURABILITY": 2
         }
       },
       "8": {
-        "argent": 500
-      },
-      "9": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 2
-        }
-      },
-      "10": {
-        "enchantements": {
-          "DIG_SPEED": 4
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["DIAMOND"],
+          "quantite": 576,
+          "texte": "Vendre 576 diamants"
         },
-        "argent": 1000
-      },
-      "11": {
-        "enchantements": {
-          "DURABILITY": 3
-        }
-      },
-      "12": {
-        "argent": 1500
-      },
-      "13": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 3
-        }
-      },
-      "14": {
         "enchantements": {
           "DIG_SPEED": 5
         }
       },
-      "15": {
-        "argent": 2500
-      },
-      "16": {
-        "enchantements": {
-          "DURABILITY": 4
-        }
-      },
-      "17": {
-        "enchantements": {
-          "DIG_SPEED": 6
-        }
-      },
-      "18": {
-        "argent": 4000
-      },
-      "19": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 4
-        }
-      },
-      "20": {
-        "enchantements": {
-          "DIG_SPEED": 7
+      "9": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": [],
+          "quantite": 25000,
+          "texte": "Miner 25 000 blocs"
         },
-        "argent": 10000,
+        "pouvoirs": {
+          "COMBO": 1
+        },
+        "description": ["&fCombo &7: célérité en minant"]
+      },
+      "10": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": ["RANDOM_ORE"],
+          "quantite": 128,
+          "texte": "Miner 128 Random Ores"
+        },
+        "pouvoirs": {
+          "TELEKINESIE": 1
+        },
+        "description": ["&fTélékinésie &7: les blocs vont dans l'inventaire"]
+      },
+      "11": {
+        "objectif": {
+          "type": "FONDRE",
+          "cibles": ["GOLD_INGOT"],
+          "quantite": 1152,
+          "texte": "Fondre 1 152 ors"
+        },
+        "enchantements": {
+          "LOOT_BONUS_BLOCKS": 3
+        }
+      },
+      "12": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": [],
+          "quantite": 35000,
+          "texte": "Miner 35 000 blocs"
+        },
+        "enchantements": {
+          "DURABILITY": 3
+        }
+      },
+      "13": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": ["EMERALD_ORE"],
+          "quantite": 48,
+          "texte": "Miner 48 émeraudes"
+        },
+        "pouvoirs": {
+          "MINAGE_ZONE": 2
+        },
+        "description": ["&fMinage 1x2"]
+      },
+      "14": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": ["RANDOM_ORE"],
+          "quantite": 256,
+          "texte": "Miner 256 Random Ores"
+        },
+        "pouvoirs": {
+          "ARGENT_BLOC": 0.2
+        },
+        "description": ["&f+0,2 $ &7par bloc miné"]
+      },
+      "15": {
+        "objectif": {
+          "type": "MINER",
+          "cibles": [],
+          "quantite": 50000,
+          "texte": "Miner 50 000 blocs"
+        },
+        "pouvoirs": {
+          "DUPLICATION_MODE": 10
+        },
+        "description": ["&f10 % &7de chance de dupliquer les minerais modés"],
         "annonce": true
       }
     }
@@ -137,128 +184,182 @@
     "actif": true,
     "materiau": "KREBBS_SWORD",
     "icone": "koriamc:krebbs_sword",
-    "nom": "&bÉpée en Krebbs",
-    "type-xp": "MOBS",
-    "xp": {
-      "PLAYER": 25,
-      "ZOMBIE": 3,
-      "SKELETON": 3,
-      "SPIDER": 3,
-      "CAVE_SPIDER": 3,
-      "CREEPER": 4,
-      "ENDERMAN": 6,
-      "BLAZE": 6,
-      "WITCH": 6,
-      "PIG_ZOMBIE": 4,
-      "GHAST": 8,
-      "MAGMA_CUBE": 2,
-      "SLIME": 2,
-      "GUARDIAN": 6,
-      "SILVERFISH": 1,
-      "ENDERMITE": 1,
-      "WITHER": 150,
-      "ENDER_DRAGON": 300,
-      "*": 1
-    },
-    "comment": [
-      "&7Tue des &fmonstres &7et des &fjoueurs&7.",
-      "&8» &fzombie &73 XP, &fenderman &76 XP, &fjoueur &725 XP",
-      "&8» &fwither &7150 XP, &fdragon &7300 XP",
-      "&7Un même joueur ne rapporte qu'une fois toutes les 10 min.",
-      "&7Les monstres de spawner rapportent 4 fois moins."
-    ],
-    "recompenses": {
+    "nom": "&bÉpée du Toucan",
+    "comment": ["&7Chaque niveau a son objectif : tuer", "&7ou vendre au shop des butins de mobs.", "&7Les mobs de spawner comptent."],
+    "niveaux": {
       "1": {
-        "enchantements": {
-          "DAMAGE_ALL": 1
-        }
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["ZOMBIE"],
+          "quantite": 300,
+          "texte": "Tuer 300 zombies"
+        },
+        "pouvoirs": {
+          "COUPS_MOBS": 3
+        },
+        "description": ["&fChâtiment III &7: les mobs meurent en 3 coups"]
       },
       "2": {
-        "enchantements": {
-          "DURABILITY": 1
-        }
-      },
-      "3": {
-        "enchantements": {
-          "DAMAGE_ALL": 2
-        }
-      },
-      "4": {
-        "argent": 250
-      },
-      "5": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["ROTTEN_FLESH"],
+          "quantite": 1500,
+          "texte": "Vendre 1 500 chairs putréfiées"
+        },
         "enchantements": {
           "LOOT_BONUS_MOBS": 1
         }
       },
-      "6": {
+      "3": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["SKELETON"],
+          "quantite": 700,
+          "texte": "Tuer 700 squelettes"
+        },
+        "pouvoirs": {
+          "COUPS_MOBS": 2
+        },
+        "description": ["&fChâtiment IV &7: les mobs meurent en 2 coups"]
+      },
+      "4": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["BONE"],
+          "quantite": 3500,
+          "texte": "Vendre 3 500 os"
+        },
         "enchantements": {
-          "DAMAGE_ALL": 3
+          "DURABILITY": 1
+        }
+      },
+      "5": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["COW"],
+          "quantite": 1500,
+          "texte": "Tuer 1 500 vaches"
+        },
+        "pouvoirs": {
+          "COUPS_MOBS": 1
+        },
+        "description": ["&fChâtiment V &7: one-shot (sauf koalas et Endermans)"]
+      },
+      "6": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["PIG_ZOMBIE"],
+          "quantite": 5000,
+          "texte": "Tuer 5 000 Pigzombies"
+        },
+        "enchantements": {
+          "LOOT_BONUS_MOBS": 2
         }
       },
       "7": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["LEATHER"],
+          "quantite": 1500,
+          "texte": "Vendre 1 500 cuirs"
+        },
         "enchantements": {
           "DURABILITY": 2
         }
       },
       "8": {
-        "argent": 500
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["SKELETON"],
+          "quantite": 10000,
+          "texte": "Tuer 10 000 squelettes"
+        },
+        "pouvoirs": {
+          "TELEKINESIE": 1
+        },
+        "description": ["&fTélékinésie &7: le butin va dans l'inventaire"]
       },
       "9": {
-        "enchantements": {
-          "FIRE_ASPECT": 1
-        }
-      },
-      "10": {
-        "enchantements": {
-          "DAMAGE_ALL": 4
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["ROTTEN_FLESH"],
+          "quantite": 5000,
+          "texte": "Vendre 5 000 chairs putréfiées"
         },
-        "argent": 1000
-      },
-      "11": {
-        "enchantements": {
-          "LOOT_BONUS_MOBS": 2
-        }
-      },
-      "12": {
-        "argent": 1500
-      },
-      "13": {
         "enchantements": {
           "DURABILITY": 3
         }
       },
-      "14": {
-        "enchantements": {
-          "DAMAGE_ALL": 5
-        }
+      "10": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["BLAZE"],
+          "quantite": 15000,
+          "texte": "Tuer 15 000 Blazes"
+        },
+        "pouvoirs": {
+          "ARGENT_MOB": 0.2
+        },
+        "description": ["&f+0,2 $ &7par mob tué"]
       },
-      "15": {
-        "argent": 2500
+      "11": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["ZOMBIE"],
+          "quantite": 30000,
+          "texte": "Tuer 30 000 zombies"
+        },
+        "pouvoirs": {
+          "ONESHOT_KOALA": 1
+        },
+        "description": ["&fOne-shot &7des koalas"]
       },
-      "16": {
-        "enchantements": {
-          "FIRE_ASPECT": 2
-        }
+      "12": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["SKELETON"],
+          "quantite": 50000,
+          "texte": "Tuer 50 000 squelettes"
+        },
+        "pouvoirs": {
+          "MULTI_KILL": 2
+        },
+        "description": ["&fDouble kill &7: tue 2 mobs d'un coup"]
       },
-      "17": {
+      "13": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["BLAZE_ROD"],
+          "quantite": 20000,
+          "texte": "Vendre 20 000 bâtons de Blaze"
+        },
         "enchantements": {
           "LOOT_BONUS_MOBS": 3
         }
       },
-      "18": {
-        "argent": 4000
-      },
-      "19": {
-        "enchantements": {
-          "DURABILITY": 4
-        }
-      },
-      "20": {
-        "enchantements": {
-          "LOOT_BONUS_MOBS": 4
+      "14": {
+        "objectif": {
+          "type": "TUER",
+          "cibles": ["KOALA"],
+          "quantite": 10000,
+          "texte": "Tuer 10 000 koalas"
         },
-        "argent": 10000,
+        "pouvoirs": {
+          "ONESHOT_ENDERMAN": 1
+        },
+        "description": ["&fOne-shot &7des Endermans"]
+      },
+      "15": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["GOLD_INGOT"],
+          "quantite": 7500,
+          "texte": "Vendre 7 500 lingots d'or"
+        },
+        "pouvoirs": {
+          "MULTI_KILL": 3
+        },
+        "description": ["&fTriple kill &7: tue 3 mobs d'un coup"],
         "annonce": true
       }
     }
@@ -267,111 +368,185 @@
     "actif": true,
     "materiau": "KREBBS_HOE",
     "icone": "koriamc:krebbs_hoe",
-    "nom": "&bHoue en Krebbs",
-    "type-xp": "CULTURES",
-    "xp": {
-      "CROPS": 2,
-      "CARROT": 2,
-      "POTATO": 2,
-      "NETHER_WARTS": 3,
-      "COCOA": 2,
-      "MELON_BLOCK": 1,
-      "PUMPKIN": 1
-    },
-    "comment": [
-      "&7Récolte des &fcultures mûres &7avec la houe.",
-      "&8» &fblé, carottes, patates, cacao &72 XP",
-      "&8» &fverrues du Nether &73 XP",
-      "&8» &fmelons, citrouilles &71 XP",
-      "&7Les cultures pas encore mûres ne comptent pas."
-    ],
-    "recompenses": {
+    "nom": "&bHoue du Toucan",
+    "comment": ["&7Chaque niveau a son objectif : récolter", "&7des cultures mûres ou les vendre au shop."],
+    "niveaux": {
       "1": {
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["CROPS"],
+          "quantite": 500,
+          "texte": "Farmer 500 blés"
+        },
+        "pouvoirs": {
+          "FORTUNE_CULTURES": 1
+        },
+        "description": ["&fFortune sur les cultures I"]
+      },
+      "2": {
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["POTATO"],
+          "quantite": 600,
+          "texte": "Farmer 600 patates"
+        },
+        "pouvoirs": {
+          "LABOUR": 2
+        },
+        "description": ["&fLabourer en 1x2"]
+      },
+      "3": {
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["CARROT"],
+          "quantite": 700,
+          "texte": "Farmer 700 carottes"
+        },
         "enchantements": {
           "DURABILITY": 1
         }
       },
-      "2": {
-        "argent": 100
-      },
-      "3": {
-        "enchantements": {
-          "DIG_SPEED": 1
-        }
-      },
       "4": {
-        "argent": 200
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["NETHER_WARTS"],
+          "quantite": 800,
+          "texte": "Farmer 800 verrues"
+        },
+        "pouvoirs": {
+          "REPLANTATION": 1
+        },
+        "description": ["&fReplantation automatique"]
       },
       "5": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 1
-        }
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["WHEAT"],
+          "quantite": 30000,
+          "texte": "Vendre 30 000 blés"
+        },
+        "pouvoirs": {
+          "FORTUNE_CULTURES": 2
+        },
+        "description": ["&fFortune sur les cultures II"]
       },
       "6": {
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["POTATO"],
+          "quantite": 15000,
+          "texte": "Farmer 15 000 patates"
+        },
         "enchantements": {
           "DURABILITY": 2
         }
       },
       "7": {
-        "argent": 400
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["CARROT_ITEM"],
+          "quantite": 75000,
+          "texte": "Vendre 75 000 carottes"
+        },
+        "pouvoirs": {
+          "CULTURES_MODE": 1
+        },
+        "description": ["&fRécolte des cultures modées"]
       },
       "8": {
-        "enchantements": {
-          "DIG_SPEED": 2
-        }
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["RADIS_CROP"],
+          "quantite": 7000,
+          "texte": "Farmer 7 000 radis"
+        },
+        "pouvoirs": {
+          "FORTUNE_CULTURES": 3
+        },
+        "description": ["&fFortune sur les cultures III"]
       },
       "9": {
-        "argent": 600
-      },
-      "10": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 2
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["NETHER_WARTS"],
+          "quantite": 20000,
+          "texte": "Farmer 20 000 verrues"
         },
-        "argent": 1000
-      },
-      "11": {
         "enchantements": {
           "DURABILITY": 3
         }
       },
+      "10": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["POTATO_ITEM"],
+          "quantite": 150000,
+          "texte": "Vendre 150 000 patates"
+        },
+        "pouvoirs": {
+          "RECOLTE_ZONE": 2
+        },
+        "description": ["&fRécolte en 1x2"]
+      },
+      "11": {
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["CROPS"],
+          "quantite": 50000,
+          "texte": "Farmer 50 000 blés"
+        },
+        "pouvoirs": {
+          "TELEKINESIE": 1
+        },
+        "description": ["&fTélékinésie &7: les récoltes vont dans l'inventaire"]
+      },
       "12": {
-        "argent": 1200
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["MELON_CROP"],
+          "quantite": 13000,
+          "texte": "Farmer 13 000 melons"
+        },
+        "pouvoirs": {
+          "LABOUR": 3
+        },
+        "description": ["&fLabourer en 3x3"]
       },
       "13": {
-        "enchantements": {
-          "DIG_SPEED": 3
-        }
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["NETHER_WARTS"],
+          "quantite": 75000,
+          "texte": "Farmer 75 000 verrues"
+        },
+        "pouvoirs": {
+          "FORTUNE_CULTURES_MODE": 3
+        },
+        "description": ["&fFortune sur les cultures modées"]
       },
       "14": {
-        "argent": 1600
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["POTATO_ITEM"],
+          "quantite": 300000,
+          "texte": "Vendre 300 000 patates"
+        },
+        "pouvoirs": {
+          "PETALES": 2
+        },
+        "description": ["&fRécolte de pétales tropicaux &7(2 %)"]
       },
       "15": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 3
+        "objectif": {
+          "type": "FARMER",
+          "cibles": ["PETIT_ROND_CROP"],
+          "quantite": 25000,
+          "texte": "Farmer 25 000 petits ronds"
         },
-        "argent": 2000
-      },
-      "16": {
-        "argent": 2500
-      },
-      "17": {
-        "enchantements": {
-          "DURABILITY": 4
-        }
-      },
-      "18": {
-        "argent": 3500
-      },
-      "19": {
-        "enchantements": {
-          "DIG_SPEED": 4
-        }
-      },
-      "20": {
-        "enchantements": {
-          "LOOT_BONUS_BLOCKS": 4
+        "pouvoirs": {
+          "RECOLTE_ZONE": 3
         },
-        "argent": 10000,
+        "description": ["&fRécolte en 3x3"],
         "annonce": true
       }
     }
@@ -380,100 +555,181 @@
     "actif": true,
     "materiau": "CANNE_KREBBS",
     "icone": "koriamc:canne_krebbs",
-    "nom": "&bCanne à pêche en Krebbs",
-    "type-xp": "PECHE",
-    "xp": {
-      "RAW_FISH": 5,
-      "*": 3
-    },
-    "comment": ["&7Pêche avec la canne.", "&8» &fpoisson &75 XP", "&8» &ftrésor ou autre prise &73 XP"],
-    "recompenses": {
+    "nom": "&bCanne à pêche du Toucan",
+    "comment": ["&7Chaque niveau a son objectif : pêcher,", "&7cuire ou vendre des poissons.", "&7Débloque les poissons communs, rares,", "&7épiques et légendaires."],
+    "niveaux": {
       "1": {
-        "enchantements": {
-          "LURE": 1
-        }
-      },
-      "2": {
-        "enchantements": {
-          "DURABILITY": 1
-        }
-      },
-      "3": {
-        "enchantements": {
-          "LUCK": 1
-        }
-      },
-      "4": {
-        "argent": 250
-      },
-      "5": {
-        "enchantements": {
-          "LURE": 2
-        }
-      },
-      "6": {
-        "enchantements": {
-          "DURABILITY": 2
-        }
-      },
-      "7": {
-        "enchantements": {
-          "LUCK": 2
-        }
-      },
-      "8": {
-        "argent": 500
-      },
-      "9": {
-        "enchantements": {
-          "LURE": 3
-        }
-      },
-      "10": {
-        "enchantements": {
-          "LUCK": 3
+        "objectif": {
+          "type": "PECHER",
+          "cibles": [],
+          "quantite": 32,
+          "texte": "Pêcher 32 poissons"
         },
-        "argent": 1000
-      },
-      "11": {
         "enchantements": {
           "DURABILITY": 3
         }
       },
+      "2": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["RAW_FISH:3"],
+          "quantite": 6,
+          "texte": "Pêcher 6 poissons-globes"
+        },
+        "enchantements": {
+          "LUCK": 1
+        }
+      },
+      "3": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["RAW_FISH:2"],
+          "quantite": 2,
+          "texte": "Pêcher 2 poissons-clowns"
+        },
+        "enchantements": {
+          "LURE": 1
+        }
+      },
+      "4": {
+        "objectif": {
+          "type": "CUIRE",
+          "cibles": ["COOKED_FISH"],
+          "quantite": 48,
+          "texte": "Cuire 48 poissons"
+        },
+        "pouvoirs": {
+          "POISSONS": 1
+        },
+        "description": ["&fPêche des poissons communs"]
+      },
+      "5": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["RAW_FISH"],
+          "quantite": 64,
+          "texte": "Vendre 64 poissons"
+        },
+        "enchantements": {
+          "LUCK": 2
+        }
+      },
+      "6": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["COMMUN"],
+          "quantite": 16,
+          "texte": "Pêcher 16 poissons communs"
+        },
+        "enchantements": {
+          "LURE": 2
+        }
+      },
+      "7": {
+        "objectif": {
+          "type": "CUIRE",
+          "cibles": ["COOKED_FISH"],
+          "quantite": 96,
+          "texte": "Cuire 96 poissons"
+        },
+        "pouvoirs": {
+          "POISSONS": 2
+        },
+        "description": ["&fPêche des poissons rares"]
+      },
+      "8": {
+        "objectif": {
+          "type": "VENDRE",
+          "cibles": ["RAW_FISH"],
+          "quantite": 96,
+          "texte": "Vendre 96 poissons"
+        },
+        "pouvoirs": {
+          "DOUBLE_POISSON": 25
+        },
+        "description": ["&f25 % &7de chance de doubler le poisson"]
+      },
+      "9": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["COMMUN"],
+          "quantite": 24,
+          "texte": "Pêcher 24 poissons communs"
+        },
+        "enchantements": {
+          "LUCK": 3
+        }
+      },
+      "10": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["RARE"],
+          "quantite": 16,
+          "texte": "Pêcher 16 poissons rares"
+        },
+        "enchantements": {
+          "LURE": 3
+        }
+      },
+      "11": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["RAW_FISH:3"],
+          "quantite": 16,
+          "texte": "Pêcher 16 poissons-globes"
+        },
+        "pouvoirs": {
+          "POISSONS": 3
+        },
+        "description": ["&fPêche des poissons épiques"]
+      },
       "12": {
-        "argent": 1500
+        "objectif": {
+          "type": "CUIRE",
+          "cibles": ["COOKED_FISH"],
+          "quantite": 128,
+          "texte": "Cuire 128 poissons"
+        },
+        "pouvoirs": {
+          "TELEKINESIE": 1
+        },
+        "description": ["&fTélékinésie &7: les prises vont dans l'inventaire"]
       },
       "13": {
+        "objectif": {
+          "type": "PECHER",
+          "cibles": [],
+          "quantite": 128,
+          "texte": "Pêcher 128 poissons"
+        },
         "enchantements": {
           "LURE": 4
-        }
+        },
+        "description": ["&fPêche 15 % plus vite"]
       },
       "14": {
-        "argent": 2000
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["EPIQUE"],
+          "quantite": 16,
+          "texte": "Pêcher 16 poissons épiques"
+        },
+        "pouvoirs": {
+          "DOUBLE_POISSON": 50
+        },
+        "description": ["&f50 % &7de chance de doubler le poisson"]
       },
       "15": {
-        "enchantements": {
-          "LUCK": 4
-        }
-      },
-      "16": {
-        "enchantements": {
-          "DURABILITY": 4
-        }
-      },
-      "17": {
-        "argent": 3000
-      },
-      "18": {
-        "argent": 4000
-      },
-      "19": {
-        "enchantements": {
-          "DURABILITY": 5
-        }
-      },
-      "20": {
-        "argent": 10000,
+        "objectif": {
+          "type": "PECHER",
+          "cibles": ["RAW_FISH:2"],
+          "quantite": 24,
+          "texte": "Pêcher 24 poissons-clowns"
+        },
+        "pouvoirs": {
+          "POISSONS": 4
+        },
+        "description": ["&fPêche des poissons légendaires"],
         "annonce": true
       }
     }

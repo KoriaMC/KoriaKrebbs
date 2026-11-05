@@ -1,6 +1,7 @@
 package fr.koriamc.krebbs.listener;
 
 import fr.koriamc.krebbs.KoriaKrebbs;
+import fr.koriamc.krebbs.model.LevelObjective;
 import fr.koriamc.krebbs.model.ToolType;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -18,13 +19,17 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.inventory.FurnaceExtractEvent;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -98,6 +103,17 @@ public final class ToolListener implements Listener {
         }
         int id = block.getTypeId();
         int data = block.getData();
+        if (type.hasObjectives()) {
+            List<String> keys = keys(block.getType().name(), data);
+            Boolean mature = cropState(block.getType(), data);
+            if (!placed || !plugin.settings().ignorePlaced) {
+                plugin.toolManager().progress(player, LevelObjective.MINE, keys, 1, true);
+            }
+            if (mature == null ? !placed || !plugin.settings().ignorePlaced : mature) {
+                plugin.toolManager().progress(player, LevelObjective.HARVEST, keys, 1, true);
+            }
+            return;
+        }
         if (type.getSource() == ToolType.Source.BLOCS) {
             if (!placed || !plugin.settings().ignorePlaced) {
                 plugin.toolManager().gain(player, type, type.xpForBlock(id, data));
@@ -112,8 +128,14 @@ public final class ToolListener implements Listener {
         }
     }
 
+    /** Comme {@link #mature}, en tenant compte des cultures modées de config.json. */
+    private Boolean cropState(Material material, int data) {
+        Integer max = plugin.settings().moddedCrops.get(material.name());
+        return max != null ? data >= max : mature(material, data);
+    }
+
     /** Culture mûre ? null si le bloc ne pousse pas par stades (melon, citrouille, canne...). */
-    private static Boolean mature(Material material, int data) {
+    public static Boolean mature(Material material, int data) {
         switch (material) {
             case CROPS:
             case CARROT:
@@ -145,6 +167,19 @@ public final class ToolListener implements Listener {
             return;
         }
         ToolType type = plugin.tools().of(killer.getItemInHand());
+        if (type != null && type.hasObjectives()) {
+            if (!(victim instanceof Player)) {
+                List<String> keys = new ArrayList<String>();
+                keys.add(victim.getType().name());
+                String custom = mobKey(victim);
+                if (custom != null) {
+                    keys.add(custom);
+                }
+                // les mobs de spawner comptent entièrement : les objectifs du Toucan sont prévus pour
+                plugin.toolManager().progress(killer, LevelObjective.KILL, keys, 1, true);
+            }
+            return;
+        }
         if (type == null || type.getSource() != ToolType.Source.MOBS) {
             return;
         }
@@ -192,11 +227,57 @@ public final class ToolListener implements Listener {
         }
         Player player = event.getPlayer();
         ToolType type = plugin.tools().of(player.getItemInHand());
+        if (type != null && type.hasObjectives()) {
+            if (counts(player)) {
+                ItemStack stack = ((Item) event.getCaught()).getItemStack();
+                List<String> keys = keys(stack.getType().name(), stack.getDurability());
+                String tier = plugin.fish().tierOf(stack);
+                if (tier != null) {
+                    keys.add(tier);
+                }
+                plugin.toolManager().progress(player, LevelObjective.FISH, keys, stack.getAmount(), true);
+            }
+            return;
+        }
         if (type == null || type.getSource() != ToolType.Source.PECHE || !counts(player)) {
             return;
         }
         Material caught = ((Item) event.getCaught()).getItemStack().getType();
         plugin.toolManager().gain(player, type, type.xpFor(caught.name()));
+    }
+
+    // ===================================================== Four (fondre, cuire)
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onExtract(FurnaceExtractEvent event) {
+        Player player = event.getPlayer();
+        if (event.getItemAmount() <= 0 || !counts(player)) {
+            return;
+        }
+        List<String> keys = keys(event.getItemType().name(), -1);
+        plugin.toolManager().progress(player, LevelObjective.SMELT, keys, event.getItemAmount(), false);
+    }
+
+    /** Clés d'un matériau : NOM et NOM:data (data < 0 : nom seul). */
+    private static List<String> keys(String material, int data) {
+        List<String> keys = new ArrayList<String>();
+        keys.add(material);
+        if (data >= 0) {
+            keys.add(material + ":" + data);
+        }
+        return keys;
+    }
+
+    /**
+     * Nom d'un mob custom (KOALA...) : type d'entité custom du serveur, sinon nom affiché
+     * sans couleurs, en majuscules et sans espaces.
+     */
+    public static String mobKey(Entity entity) {
+        String custom = entity.getCustomName();
+        if (custom == null || custom.isEmpty()) {
+            return null;
+        }
+        return org.bukkit.ChatColor.stripColor(custom).trim().toUpperCase(java.util.Locale.ROOT).replace(' ', '_');
     }
 
     // ============================================================== Divers

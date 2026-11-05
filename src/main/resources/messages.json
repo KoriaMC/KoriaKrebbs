@@ -52,8 +52,8 @@
     }
   },
   "krebbs": {
-    "not-holding": "{prefix}&cTiens un outil Krebbs en main.",
-    "xp-gain": "[actionbar]&b+{gain} XP &8» {outil} &7niv. &f{niveau} &8[{barre}&8] &7{xp}/{requis}",
+    "not-holding": "{prefix}&cTiens un outil du Toucan en main.",
+    "xp-gain": "[actionbar]&b+{gain} &8» {outil} &7niv. &f{niveau} &8[{barre}&8] &7{objectif} &f{xp}/{requis}",
     "level-up": [
       "[title]&b&lNIVEAU {niveau} !;;{outil} &7niveau &f{niveau}&7/&f{max}",
       "{prefix}{outil} &7passe au niveau &b&l{niveau}&7/&f{max} &7!"
@@ -66,7 +66,8 @@
     "",
     "&7Niveau &b{niveau}&7/&b{max}",
     "&8[{barre}&8] &7{pourcentage}%",
-    "&7XP : &f{xp}&7/&f{requis}",
+    "&7Objectif : &f{objectif}",
+    "&7Progression : &f{xp}&7/&f{requis}",
     "&8Shift + clic droit : menu"
   ],
   "lore-max": ["", "&6&lNiveau maximum &7({max}/{max})", "&8Shift + clic droit : menu"],
@@ -74,8 +75,8 @@
     "chat": [
       "&3&m-------&r {outil} &3&m-------",
       "&7Niveau &b{niveau}&7/&b{max} &8[{barre}&8] &7{pourcentage}%",
-      "&7XP : &f{xp}&7/&f{requis} &8(encore {restant})",
-      "&eComment gagner de l'XP :"
+      "&7Objectif : &f{objectif} &8({xp}/{requis}, encore {restant})",
+      "&eComment progresser :"
     ],
     "chat-max": ["&3&m-------&r {outil} &3&m-------", "&6&lNiveau maximum &7({max}/{max})", "&eComment gagner de l'XP :"],
     "chat-howto": "&8 » {ligne}",

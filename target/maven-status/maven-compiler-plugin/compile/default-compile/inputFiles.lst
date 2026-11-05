@@ -5,6 +5,7 @@ C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\jav
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\model\ToolData.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\util\Sounds.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\command\CommandContext.java
+C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\tool\FishTable.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\util\Items.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\gui\Menu.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\command\impl\AdminCommands.java
@@ -23,9 +24,12 @@ C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\jav
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\config\JsonFile.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\config\ToolCatalog.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\command\MainCommand.java
+C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\listener\PowerListener.java
+C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\model\LevelObjective.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\config\Settings.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\util\Text.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\listener\ToolListener.java
+C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\tool\Powers.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\tool\ToolManager.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\gui\MenuManager.java
 C:\Users\alpha\Documents\Workspace_Java\KoriaMC\Plugins\KoriaKrebbs\src\main\java\fr\koriamc\krebbs\gui\ToolMenu.java

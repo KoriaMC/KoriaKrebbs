@@ -5,6 +5,7 @@ import fr.koriamc.krebbs.api.event.KrebbsLevelUpEvent;
 import fr.koriamc.krebbs.api.event.KrebbsXpGainEvent;
 import fr.koriamc.krebbs.config.Settings;
 import fr.koriamc.krebbs.hook.VaultHook;
+import fr.koriamc.krebbs.model.LevelObjective;
 import fr.koriamc.krebbs.model.LevelReward;
 import fr.koriamc.krebbs.model.ToolData;
 import fr.koriamc.krebbs.model.ToolType;
@@ -19,6 +20,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,10 +57,50 @@ public final class ToolManager {
 
     /** XP gagnée avec l'outil tenu en main (appliquée au tick suivant). */
     public void gain(Player player, ToolType type, int amount) {
+        gain(player, player.getInventory().getHeldItemSlot(), type, amount);
+    }
+
+    /**
+     * Action signalée pour les outils à objectifs (Toucan) : fait progresser les outils dont
+     * l'objectif du prochain niveau correspond.
+     *
+     * @param heldOnly seulement l'outil tenu en main (tuer, miner, pêcher), sinon tous les
+     *                 outils de l'inventaire (vendre, fondre)
+     */
+    public void progress(Player player, String action, Collection<String> keys, int amount, boolean heldOnly) {
+        if (amount <= 0) {
+            return;
+        }
+        PlayerInventory inventory = player.getInventory();
+        int held = inventory.getHeldItemSlot();
+        for (int slot = 0; slot < 36; slot++) {
+            if (heldOnly && slot != held) {
+                continue;
+            }
+            ItemStack item = inventory.getItem(slot);
+            ToolType type = plugin.tools().of(item);
+            if (type == null || !type.hasObjectives()) {
+                continue;
+            }
+            ToolData data = ItemData.read(item);
+            LevelObjective objective = type.objective(data.level + 1);
+            if (objective != null && objective.matches(action, keys)) {
+                gain(player, slot, type, amount);
+            }
+        }
+    }
+
+    /** Pouvoirs actifs de cet objet (vide si ce n'est pas un outil). */
+    public Map<String, Double> powers(ItemStack item) {
+        ToolType type = plugin.tools().of(item);
+        return type == null ? new HashMap<String, Double>() : Powers.of(type, ItemData.read(item));
+    }
+
+    /** XP gagnée par l'outil d'un emplacement (appliquée au tick suivant). */
+    public void gain(Player player, int slot, ToolType type, int amount) {
         if (amount <= 0 || type == null) {
             return;
         }
-        int slot = player.getInventory().getHeldItemSlot();
         List<Pending> list = pending.get(player.getUniqueId());
         if (list == null) {
             list = new ArrayList<Pending>();
@@ -137,6 +179,11 @@ public final class ToolManager {
             data.xp -= type.required(data.level + 1);
             data.level++;
             reached.add(data.level);
+            if (type.hasObjectives()) {
+                // chaque niveau a son propre objectif : le surplus ne compte pas pour le suivant
+                data.xp = 0;
+                break;
+            }
         }
         if (data.level >= max) {
             data.xp = 0;
@@ -281,12 +328,19 @@ public final class ToolManager {
                 "restant", Math.max(0, required - data.xp),
                 "pourcentage", percent,
                 "barre", bar(percent),
-                "prochain", Math.min(max, data.level + 1)
+                "prochain", Math.min(max, data.level + 1),
+                "objectif", objectiveText(type, data)
         };
         Object[] all = new Object[base.length + extra.length];
         System.arraycopy(extra, 0, all, 0, extra.length);
         System.arraycopy(base, 0, all, extra.length, base.length);
         return all;
+    }
+
+    /** Texte de l'objectif du prochain niveau (vide en mode XP ou au niveau maximum). */
+    public String objectiveText(ToolType type, ToolData data) {
+        LevelObjective objective = type.objective(data.level + 1);
+        return objective == null ? "" : Text.color(objective.getText());
     }
 
     /** Barre de progression en texte (lore, barre d'action). */

@@ -1,5 +1,6 @@
 package fr.koriamc.krebbs.config;
 
+import fr.koriamc.krebbs.model.LevelObjective;
 import fr.koriamc.krebbs.model.LevelReward;
 import fr.koriamc.krebbs.model.ToolType;
 import fr.koriamc.krebbs.util.Items;
@@ -88,6 +89,10 @@ public final class ToolCatalog {
             return null;
         }
         ToolType.Source source = ToolType.Source.parse(s.getString("type-xp"));
+        boolean objectiveMode = s.isConfigurationSection("niveaux");
+        if (source == null && objectiveMode) {
+            source = ToolType.Source.BLOCS;
+        }
         if (source == null) {
             problems.add(where + ".type-xp invalide (" + s.getString("type-xp") + ") : BLOCS, MOBS, CULTURES ou PECHE.");
             return null;
@@ -130,6 +135,10 @@ public final class ToolCatalog {
             }
         }
 
+        if (objectiveMode) {
+            return readObjectives(id, s, parsed[0], materialName, icon, source, where);
+        }
+
         Map<Integer, LevelReward> rewards = new TreeMap<Integer, LevelReward>();
         ConfigurationSection rewardSection = s.getConfigurationSection("recompenses");
         if (rewardSection != null) {
@@ -146,6 +155,53 @@ public final class ToolCatalog {
 
         return new ToolType(id.toLowerCase(Locale.ROOT), parsed[0], materialName, icon, s.getString("nom", id), source,
                 xp, required, Items.stringList(s, "comment"), rewards);
+    }
+
+    /**
+     * Mode « objectifs » (outils du Toucan) : chaque niveau de "niveaux" a un objectif
+     * à remplir, puis ses enchantements, pouvoirs et autres récompenses.
+     */
+    private ToolType readObjectives(String id, ConfigurationSection s, int materialId, String materialName, String icon,
+                                    ToolType.Source source, String where) {
+        ConfigurationSection levels = s.getConfigurationSection("niveaux");
+        Map<Integer, LevelReward> rewards = new TreeMap<Integer, LevelReward>();
+        Map<Integer, LevelObjective> objectives = new TreeMap<Integer, LevelObjective>();
+        for (String key : levels.getKeys(false)) {
+            Integer level = Settings.toInt(key);
+            ConfigurationSection l = levels.getConfigurationSection(key);
+            if (level == null || level < 1 || l == null) {
+                problems.add(where + ".niveaux." + key + " : niveau invalide.");
+                continue;
+            }
+            String at = where + ".niveaux." + key;
+            ConfigurationSection o = l.getConfigurationSection("objectif");
+            String type = o == null ? null : LevelObjective.parseType(o.getString("type"));
+            if (type == null) {
+                problems.add(at + ".objectif.type invalide : TUER, MINER, FARMER, PECHER, FONDRE (ou CUIRE) ou VENDRE.");
+                continue;
+            }
+            int amount = o.getInt("quantite", 0);
+            if (amount <= 0) {
+                problems.add(at + ".objectif.quantite doit être supérieure à 0.");
+                continue;
+            }
+            objectives.put(level, new LevelObjective(type, Items.stringList(o, "cibles"), amount,
+                    o.getString("texte", type + " x" + amount)));
+            rewards.put(level, reward(level, l, at));
+        }
+        List<Integer> required = new ArrayList<Integer>();
+        for (int level = 1; objectives.containsKey(level); level++) {
+            required.add(objectives.get(level).getAmount());
+        }
+        if (required.size() != objectives.size()) {
+            problems.add(where + ".niveaux : les niveaux doivent se suivre à partir de 1 (seuls 1 à " + required.size() + " sont utilisés).");
+        }
+        if (required.isEmpty()) {
+            problems.add(where + ".niveaux : aucun niveau valide, outil ignoré.");
+            return null;
+        }
+        return new ToolType(id.toLowerCase(Locale.ROOT), materialId, materialName, icon, s.getString("nom", id), source,
+                new HashMap<String, Integer>(), required, Items.stringList(s, "comment"), rewards, objectives);
     }
 
     /** Clé d'XP normalisée : id ou id:data pour un bloc, nom Bukkit pour une entité ou un objet. */
@@ -198,8 +254,22 @@ public final class ToolCatalog {
                 }
             }
         }
+        Map<String, Double> powers = new LinkedHashMap<String, Double>();
+        ConfigurationSection p = r.getConfigurationSection("pouvoirs");
+        if (p != null) {
+            for (String name : p.getKeys(false)) {
+                String power = name.trim().toUpperCase(Locale.ROOT).replace('-', '_');
+                if (!fr.koriamc.krebbs.tool.Powers.isKnown(power)) {
+                    problems.add(where + ".pouvoirs." + name + " : pouvoir inconnu (" + fr.koriamc.krebbs.tool.Powers.list() + ").");
+                    continue;
+                }
+                Object raw = p.get(name);
+                double value = raw instanceof Boolean ? ((Boolean) raw ? 1 : 0) : p.getDouble(name, 1);
+                powers.put(power, value);
+            }
+        }
         return new LevelReward(level, enchants, Math.max(0, r.getDouble("argent", 0)), Items.stringList(r, "commandes"),
-                Items.stringList(r, "message"), Items.stringList(r, "description"), r.getBoolean("annonce", false));
+                Items.stringList(r, "message"), Items.stringList(r, "description"), r.getBoolean("annonce", false), powers);
     }
 
     /** Nom Bukkit (DIG_SPEED) ou français (efficacite, chance-de-la-mer). */

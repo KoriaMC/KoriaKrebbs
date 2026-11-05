@@ -53,9 +53,19 @@ public final class ToolType {
     private final List<Integer> required;
     private final List<String> howTo;
     private final Map<Integer, LevelReward> rewards;
+    /** Objectif de chaque niveau (mode « objectifs » ; vide = mode XP). */
+    private final Map<Integer, LevelObjective> objectives;
 
     public ToolType(String id, int materialId, String materialName, String icon, String name, Source source,
                     Map<String, Integer> xp, List<Integer> required, List<String> howTo, Map<Integer, LevelReward> rewards) {
+        this(id, materialId, materialName, icon, name, source, xp, required, howTo, rewards,
+                Collections.<Integer, LevelObjective>emptyMap());
+    }
+
+    public ToolType(String id, int materialId, String materialName, String icon, String name, Source source,
+                    Map<String, Integer> xp, List<Integer> required, List<String> howTo, Map<Integer, LevelReward> rewards,
+                    Map<Integer, LevelObjective> objectives) {
+        this.objectives = Collections.unmodifiableMap(objectives);
         this.id = id;
         this.materialId = materialId;
         this.materialName = materialName;
@@ -144,5 +154,15 @@ public final class ToolType {
 
     public Map<Integer, LevelReward> getRewards() {
         return rewards;
+    }
+
+    /** Chaque niveau a son propre objectif (outils du Toucan) au lieu d'un gain d'XP générique. */
+    public boolean hasObjectives() {
+        return !objectives.isEmpty();
+    }
+
+    /** Objectif à remplir pour atteindre {@code level}, ou null. */
+    public LevelObjective objective(int level) {
+        return objectives.get(level);
     }
 }
