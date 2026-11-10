@@ -130,7 +130,7 @@ public final class ToolListener implements Listener {
 
     /** Comme {@link #mature}, en tenant compte des cultures modées de config.json. */
     private Boolean cropState(Material material, int data) {
-        Integer max = plugin.settings().moddedCrops.get(material.name());
+        Integer max = plugin.settings().moddedCropMax(material);
         return max != null ? data >= max : mature(material, data);
     }
 

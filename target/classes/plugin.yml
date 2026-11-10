@@ -2,7 +2,7 @@ name: KoriaKrebbs
 version: 1.0.0
 main: fr.koriamc.krebbs.KoriaKrebbs
 author: KoriaMC
-description: Outils Krebbs à 20 niveaux (XP, récompenses, menu) pour KoriaMC (Spigot 1.8.8)
+description: "Outils Krebbs à 20 niveaux (XP, récompenses, menu) pour KoriaMC (Spigot 1.8.8)"
 softdepend: [Vault]
 
 # La commande principale (/krebbs par défaut) et ses alias sont enregistrés dynamiquement

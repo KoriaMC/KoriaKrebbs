@@ -179,7 +179,7 @@ public final class PowerListener implements Listener {
         }
 
         Boolean mature = cropState(block);
-        boolean modded = plugin.settings().moddedCrops.containsKey(type);
+        boolean modded = plugin.settings().isModdedCrop(block.getType());
         boolean cropsAllowed = !modded || Powers.value(powers, Powers.MODDED_CROPS) > 0;
         if (Boolean.TRUE.equals(mature) && cropsAllowed) {
             int fortune = (int) Powers.value(powers, modded ? Powers.MODDED_CROP_FORTUNE : Powers.CROP_FORTUNE);
@@ -222,15 +222,46 @@ public final class PowerListener implements Listener {
                 }
             }
         }
-        int harvestArea = (int) Powers.value(powers, Powers.HARVEST_AREA);
-        if (harvestArea >= 2 && Boolean.TRUE.equals(mature) && cropsAllowed) {
-            for (Block b : area(block, player, harvestArea)) {
-                if (b.getType() == block.getType() && Boolean.TRUE.equals(cropState(b))) {
-                    extra.add(b);
-                }
-            }
+        if (Boolean.TRUE.equals(mature) && cropsAllowed) {
+            extra.addAll(matureAround(block, player, powers));
         }
         breakExtra(player, tool, extra);
+    }
+
+    /**
+     * Houe du Toucan : une culture qui n'a pas fini de pousser n'est jamais cassée. Si la houe
+     * récolte en zone, les cultures mûres autour sont quand même récoltées.
+     */
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+    public void onHoeImmature(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        ItemStack tool = player.getItemInHand();
+        fr.koriamc.krebbs.model.ToolType type = plugin.tools().of(tool);
+        if (type == null || !type.getMaterialName().endsWith("_HOE") || busy.contains(player.getUniqueId())) {
+            return;
+        }
+        Block block = event.getBlock();
+        if (!Boolean.FALSE.equals(cropState(block))) {
+            return;
+        }
+        event.setCancelled(true);
+        breakExtra(player, tool, matureAround(block, player, plugin.toolManager().powers(tool)));
+    }
+
+    /** Cultures mûres autour (pouvoir RECOLTE_ZONE : 1x2 ou 3x3), modées seulement avec CULTURES_MODE. */
+    private List<Block> matureAround(Block center, Player player, Map<String, Double> powers) {
+        List<Block> out = new ArrayList<Block>();
+        int harvestArea = (int) Powers.value(powers, Powers.HARVEST_AREA);
+        if (harvestArea < 2) {
+            return out;
+        }
+        boolean moddedAllowed = Powers.value(powers, Powers.MODDED_CROPS) > 0;
+        for (Block b : area(center, player, harvestArea)) {
+            if (Boolean.TRUE.equals(cropState(b)) && (moddedAllowed || !plugin.settings().isModdedCrop(b.getType()))) {
+                out.add(b);
+            }
+        }
+        return out;
     }
 
     /** Casse des blocs en plus en passant par BlockBreakEvent (protections, quêtes, objectifs). */
@@ -290,7 +321,7 @@ public final class PowerListener implements Listener {
     }
 
     private Boolean cropState(Block block) {
-        Integer max = plugin.settings().moddedCrops.get(block.getType().name());
+        Integer max = plugin.settings().moddedCropMax(block.getType());
         return max != null ? block.getData() >= max : ToolListener.mature(block.getType(), block.getData());
     }
 
@@ -323,7 +354,11 @@ public final class PowerListener implements Listener {
             case NETHER_WARTS:
                 return Material.NETHER_STALK;
             default:
-                return null;
+                // culture modée RADIS_CROP -> graines GRAINES_RADIS
+                String name = crop.name();
+                return name.endsWith("_CROP")
+                        ? Material.matchMaterial("GRAINES_" + name.substring(0, name.length() - "_CROP".length()))
+                        : null;
         }
     }
 

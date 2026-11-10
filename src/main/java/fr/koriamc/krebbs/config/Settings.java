@@ -117,6 +117,22 @@ public final class Settings {
     }
 
     /** Son de la section sons (chaîne vide si absent). */
+    /**
+     * Data de la culture modée mûre, ou null si ce n'est pas une culture modée. Les cultures
+     * de config.json (pouvoirs.cultures-modees) d'abord, puis tout bloc nommé *_CROP (stade 7).
+     */
+    public Integer moddedCropMax(org.bukkit.Material material) {
+        Integer max = moddedCrops.get(material.name());
+        if (max == null && material.name().endsWith("_CROP")) {
+            max = 7;
+        }
+        return max;
+    }
+
+    public boolean isModdedCrop(org.bukkit.Material material) {
+        return moddedCropMax(material) != null;
+    }
+
     public String sound(String key) {
         String value = sounds.get(key);
         return value == null ? "" : value;
